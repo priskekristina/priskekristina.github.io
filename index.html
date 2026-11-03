@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#F8F4EC">
+  <title>KODA Kristinasavituba – loovuse kodu Kuressaares</title>
+  <meta name="description" content="KODA Kristinasavituba Kuressaares on loominguline paik, kus kohtuvad savi, käsitöö ja loovus. Leia meid Kauba tänavalt ja võta ühendust külastuse või töötoa kokkuleppimiseks.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Manrope:wght@400;500;600;700&display=swap&subset=latin,latin-ext" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #FF5757;
+      --color-secondary: #52624A;
+      --color-sand: #E7D8C2;
+      --color-background: #F8F4EC;
+      --color-surface: #FFFFFF;
+      --color-text: #252421;
+      --color-muted: #625F58;
+      --color-border: #DED5C8;
+      --font-heading: "DM Serif Display", Georgia, serif;
+      --font-body: "Manrope", Arial, sans-serif;
+      --content-width: 1160px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --shadow: 0 12px 36px rgba(37,36,33,.09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 94px; }
+    body {
+      margin: 0; color: var(--color-text); background: var(--color-background);
+      font-family: var(--font-body); font-size: 16px; line-height: 1.7;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--color-secondary); text-underline-offset: 4px; }
+    a:hover { color: #35432F; }
+    button, input, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--color-secondary); outline-offset: 4px; }
+    .skip-link {
+      position: absolute; left: 1rem; top: -5rem; z-index: 1000;
+      padding: .7rem 1rem; background: white; color: var(--color-text); border-radius: 8px;
+    }
+    .skip-link:focus { top: 1rem; }
+    .wrap { width: min(var(--content-width), calc(100% - 48px)); margin-inline: auto; }
+    .eyebrow {
+      margin: 0 0 .75rem; color: var(--color-secondary); text-transform: uppercase;
+      letter-spacing: .16em; font-size: .75rem; font-weight: 700;
+    }
+    h1,h2,h3 { margin: 0; font-family: var(--font-heading); font-weight: 400; line-height: 1.12; }
+    h1 { font-size: clamp(2.65rem, 6vw, 5.1rem); letter-spacing: -.025em; }
+    h2 { font-size: clamp(2.1rem, 4vw, 3.35rem); }
+    h3 { font-size: clamp(1.45rem, 2.5vw, 1.9rem); }
+    p { margin: 0 0 1rem; }
+    .muted { color: var(--color-muted); }
+    .section { padding: 94px 0; }
+    .section-head { max-width: 700px; margin-bottom: 38px; }
+    .section-head p { margin-top: 16px; color: var(--color-muted); font-size: 1.05rem; }
+    .btn {
+      display: inline-flex; justify-content: center; align-items: center; gap: .55rem;
+      min-height: 50px; padding: 12px 23px; border: 2px solid transparent;
+      border-radius: 12px; text-decoration: none; font-size: .95rem; font-weight: 700;
+      transition: background .2s ease, transform .2s ease, border-color .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--color-primary); color: #252421; border-color: var(--color-primary); }
+    .btn-primary:hover { background: #F04444; border-color: #F04444; color: #252421; }
+    .btn-secondary { color: var(--color-secondary); border-color: var(--color-secondary); background: transparent; }
+    .btn-secondary:hover { color: #fff; background: var(--color-secondary); }
+    .site-header {
+      position: sticky; top: 0; z-index: 50; background: rgba(248,244,236,.96);
+      border-bottom: 1px solid rgba(222,213,200,.8); backdrop-filter: blur(12px);
+    }
+    .header-inner { min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: var(--color-text); }
+    .brand img { width: 58px; height: 58px; object-fit: contain; }
+    .brand-name { display: grid; line-height: 1.05; }
+    .brand-name strong { font: 400 1.8rem var(--font-heading); letter-spacing: .03em; }
+    .brand-name span { margin-top: 5px; font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    .nav { display: flex; align-items: center; gap: clamp(16px,2.2vw,30px); }
+    .nav a { color: var(--color-text); text-decoration: none; font-size: .9rem; font-weight: 600; }
+    .nav a:hover { color: var(--color-secondary); }
+    .nav .nav-cta { padding: 10px 17px; background: var(--color-primary); border-radius: 10px; }
+    .menu-toggle { display: none; border: 1px solid var(--color-border); background: white; color: var(--color-text); border-radius: 10px; width: 46px; height: 44px; cursor: pointer; }
+    .hero { position: relative; min-height: 660px; display: grid; align-items: center; overflow: hidden; background: #5D584C; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(22,23,19,.68) 0%, rgba(22,23,19,.48) 42%, rgba(22,23,19,.05) 100%),
+        url("images/koda-building.webp") center 54% / cover no-repeat;
+      transform: scale(1.01);
+    }
+    .hero-content { position: relative; z-index: 1; padding: 100px 0 112px; color: #fff; max-width: 710px; }
+    .hero .eyebrow { color: #F7D9C7; }
+    .hero h1 { max-width: 690px; }
+    .hero p { max-width: 570px; margin: 22px 0 30px; color: rgba(255,255,255,.93); font-size: clamp(1rem,1.5vw,1.18rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero .btn-secondary { color: white; border-color: rgba(255,255,255,.85); }
+    .hero .btn-secondary:hover { color: var(--color-text); background: white; }
+    .hero-note { display: flex; align-items: center; gap: 9px; margin-top: 34px; font-size: .83rem; color: rgba(255,255,255,.9); }
+    .hero-note::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); }
+    .intro-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(36px,7vw,90px); align-items: center; }
+    .intro-copy p { color: var(--color-muted); max-width: 590px; }
+    .intro-copy .lead { margin-top: 20px; color: var(--color-text); font-size: 1.16rem; }
+    .photo-frame { position: relative; }
+    .photo-frame img { width: 100%; height: 470px; object-fit: cover; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .photo-caption { position: absolute; right: -18px; bottom: 24px; max-width: 220px; padding: 16px 19px; background: var(--color-primary); border-radius: 14px; font: 400 1.2rem/1.2 var(--font-heading); }
+    .soft-section { background: #F0E9DE; }
+    .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .card { background: var(--color-surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 5px 22px rgba(37,36,33,.055); }
+    .card img { width: 100%; height: 235px; object-fit: cover; }
+    .card-body { padding: 25px; }
+    .card-body p { color: var(--color-muted); margin: 12px 0 18px; font-size: .96rem; }
+    .text-link { display: inline-flex; gap: 8px; align-items: center; color: var(--color-secondary); font-weight: 700; text-decoration: none; }
+    .text-link:hover { text-decoration: underline; }
+    .story-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 60px; align-items: center; }
+    .story-grid img { width: 100%; height: 520px; object-fit: cover; border-radius: var(--radius-lg); }
+    .story-copy p { color: var(--color-muted); }
+    .story-copy .btn { margin-top: 12px; }
+    .quote-band { padding: 70px 0; background: var(--color-secondary); color: #fff; text-align: center; }
+    .quote-band h2 { max-width: 850px; margin: auto; }
+    .quote-band p { margin: 18px 0 0; color: rgba(255,255,255,.82); }
+    .faq-list { max-width: 850px; border-top: 1px solid var(--color-border); }
+    details { border-bottom: 1px solid var(--color-border); padding: 20px 0; }
+    summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 20px; align-items: center; font-weight: 700; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--color-secondary); font-size: 1.5rem; font-weight: 400; }
+    details[open] summary::after { content: "−"; }
+    details p { color: var(--color-muted); padding: 14px 34px 0 0; margin: 0; }
+    .review-panel { display: grid; grid-template-columns: 1fr auto; gap: 25px; align-items: center; background: #fff; padding: 34px; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .review-panel p { color: var(--color-muted); margin: 10px 0 0; max-width: 650px; }
+    .contact-section { background: #EFE7DA; }
+    .contact-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 50px; align-items: start; }
+    .contact-details { display: grid; gap: 22px; margin-top: 28px; }
+    .contact-item { display: grid; grid-template-columns: 42px 1fr; gap: 12px; align-items: start; }
+    .contact-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--color-sand); color: var(--color-secondary); font-weight: 700; }
+    .contact-item strong { display: block; margin-bottom: 3px; }
+    .contact-item a { font-weight: 600; }
+    .form-card { background: white; padding: clamp(22px,4vw,38px); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+    .form-card h3 { margin-bottom: 8px; }
+    .form-card > p { color: var(--color-muted); font-size: .92rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: .85rem; font-weight: 700; }
+    input, textarea {
+      width: 100%; min-height: 48px; border: 1px solid #CFC5B8; border-radius: 9px;
+      padding: 11px 13px; background: #FFFEFC; color: var(--color-text);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus { outline: 2px solid var(--color-secondary); outline-offset: 2px; border-color: var(--color-secondary); }
+    .form-card .btn { margin-top: 18px; width: 100%; }
+    .form-note { margin: 12px 0 0 !important; font-size: .76rem !important; }
+    .map-note { margin-top: 28px; padding: 24px; background: rgba(255,255,255,.65); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+    .map-note p { margin: 5px 0 0; color: var(--color-muted); font-size: .9rem; }
+    .footer { padding: 54px 0 30px; background: var(--color-text); color: #F8F4EC; }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 35px; }
+    .footer .brand { color: white; }
+    .footer .brand img { background: #fff; border-radius: 50%; }
+    .footer p, .footer a { color: rgba(248,244,236,.78); font-size: .88rem; }
+    .footer h3 { font: 700 .85rem var(--font-body); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 13px; }
+    .footer-links { display: grid; gap: 7px; }
+    .footer-links a { text-decoration: none; }
+    .footer-links a:hover { color: white; text-decoration: underline; }
+    .copyright { border-top: 1px solid rgba(255,255,255,.17); margin-top: 35px; padding-top: 20px; font-size: .78rem; color: rgba(248,244,236,.62); }
+    .mobile-booking { display: none; }
+    @media (max-width: 900px) {
+      .nav { gap: 13px; }
+      .nav a { font-size: .82rem; }
+      .nav .nav-cta { padding: 9px 12px; }
+      .intro-grid, .story-grid, .contact-grid { gap: 34px; }
+      .cards { gap: 15px; }
+      .card-body { padding: 20px; }
+    }
+    @media (max-width: 720px) {
+      html { scroll-padding-top: 76px; }
+      .wrap { width: min(100% - 34px, var(--content-width)); }
+      .header-inner { min-height: 72px; }
+      .brand img { width: 48px; height: 48px; }
+      .brand-name strong { font-size: 1.5rem; }
+      .brand-name span { font-size: .5rem; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav {
+        display: none; position: absolute; left: 0; right: 0; top: 72px; padding: 16px 22px 22px;
+        background: var(--color-background); border-bottom: 1px solid var(--color-border);
+        box-shadow: 0 12px 20px rgba(37,36,33,.08); align-items: stretch; flex-direction: column; gap: 0;
+      }
+      .nav.open { display: flex; }
+      .nav a { padding: 12px 4px; font-size: .98rem; }
+      .nav .nav-cta { text-align: center; margin-top: 8px; padding: 12px; }
+      .hero { min-height: 620px; }
+      .hero::before { background: linear-gradient(90deg, rgba(22,23,19,.72), rgba(22,23,19,.42)), url("images/koda-building.webp") 58% center / cover no-repeat; }
+      .hero-content { padding: 85px 0 100px; }
+      .hero p { font-size: 1rem; }
+      .section { padding: 68px 0; }
+      .intro-grid, .story-grid, .contact-grid { grid-template-columns: 1fr; }
+      .photo-frame img { height: 340px; }
+      .photo-caption { right: 10px; bottom: 12px; }
+      .cards { grid-template-columns: 1fr; }
+      .card img { height: 245px; }
+      .story-grid img { height: 390px; }
+      .review-panel { grid-template-columns: 1fr; padding: 25px; }
+      .review-panel .btn { justify-self: start; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+      .mobile-booking {
+        display: block; position: fixed; z-index: 45; bottom: 12px; left: 14px; right: 14px;
+        padding: 0 0 env(safe-area-inset-bottom);
+      }
+      .mobile-booking a { width: 100%; box-shadow: 0 7px 25px rgba(37,36,33,.22); }
+      .footer { padding-bottom: 100px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "KODA Kristinasavituba",
+    "description": "Loominguline savituba ja käsitööga seotud tegevused Kuressaares.",
+    "telephone": "+3725269755",
+    "email": "priskekristina@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kauba tn 3",
+      "addressLocality": "Kuressaare",
+      "addressRegion": "Saare maakond",
+      "addressCountry": "EE"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#sisu">Liigu põhisisu juurde</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#avaleht" aria-label="KODA Kristinasavituba – avaleht">
+        <img src="images/koda-logo.png" width="58" height="58" alt="KODA Loovuse kodu logo">
+        <span class="brand-name"><strong>KODA</strong><span>Loovuse kodu</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Ava menüü" aria-expanded="false" aria-controls="pohimenyy">
+        <svg width="23" height="23" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <nav class="nav" id="pohimenyy" aria-label="Peamenüü">
+        <a href="#avaleht">Avaleht</a>
+        <a href="#tegevused">Tegevused</a>
+        <a href="#meist">Meie lugu</a>
+        <a href="#kontakt">Kontakt</a>
+        <a class="nav-cta" href="#kontakt">Küsi pakkumist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="sisu">
+    <section class="hero" id="avaleht" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-content">
+          <p class="eyebrow">KODA · Loovuse kodu · Kuressaare</p>
+          <h1 id="hero-title">Võta hetk. Lase loovusel tulla.</h1>
+          <p>KODA Kristinasavituba on loominguline paik Saaremaa südames. Siin kohtuvad savi, käeline tegevus ja rõõm ise tegemisest.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#tegevused">Avasta tegevusi <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#kontakt">Võta ühendust</a>
+          </div>
+          <div class="hero-note">Kauba tn 3 · Kuressaare · Saaremaa</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="tere-title">
+      <div class="wrap intro-grid">
+        <div class="intro-copy">
+          <p class="eyebrow">Tere tulemast KODAsse</p>
+          <h2 id="tere-title">Loovusel on siin oma koht.</h2>
+          <p class="lead">Mõnikord on kõige parem puhkus see, kus saab korraks aja maha võtta ja oma kätega midagi luua.</p>
+          <p>KODA Kristinasavituba asub Kuressaares, Kauba tänaval. Meie ruumis on koos loominguline tegevus, käsitöö ja mõnus võimalus argipäevast välja astuda.</p>
+          <p>Oled oodatud tutvuma meie tegemistega ning küsima, millised võimalused sobivad sinu külastuseks või seltskonnale.</p>
+          <a class="text-link" href="#meist">Loe KODA lugu <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="photo-frame">
+          <img src="images/savitoa-detail.webp" width="1056" height="719" alt="KODA savitoa töölaud, töövahendid ja keraamilised esemed" loading="lazy">
+          <div class="photo-caption">Koht, kus ideed saavad kuju.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-section" id="tegevused" aria-labelledby="activities-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Avasta ja katseta</p>
+          <h2 id="activities-title">Tegevused KODAs</h2>
+          <p>Keraamika ja loovtegevus annavad võimaluse õppida midagi uut, keskenduda käelisele tegevusele ning veeta aega teistmoodi. Täpse töötoa sisu, saadavuse ja hinna lepime kokku personaalselt.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <img src="images/tootuba.webp" width="900" height="1350" alt="Külalised loovtöötoas savi vormimas ja töövahendeid kasutamas" loading="lazy">
+            <div class="card-body">
+              <h3>Keraamika ja savi</h3>
+              <p>Tutvu savi ja keraamikaga ning avasta, mida on võimalik oma kätega luua.</p>
+              <a class="text-link" href="#kontakt">Küsi töötoa kohta <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          <article class="card">
+            <img src="images/savitoa-detail.webp" width="1056" height="719" alt="Keraamika töövahendid ja pooleliolevad saviesemed KODA savitoas" loading="lazy">
+            <div class="card-body">
+              <h3>Loominguline aeg</h3>
+              <p>Tule otsima inspiratsiooni, proovima uusi võtteid ja võtma aega iseendale.</p>
+              <a class="text-link" href="#kontakt">Küsi võimaluste kohta <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          <article class="card">
+            <img src="images/koda-ruum.webp" width="1400" height="1000" alt="KODA loovuse kodu ruum ja Saaremaa käsitöö väljapanek" loading="lazy">
+            <div class="card-body">
+              <h3>Koos on toredam</h3>
+              <p>Kui soovid tulla sõprade, pere või väikese seltskonnaga, kirjuta meile oma ideest.</p>
+              <a class="text-link" href="#kontakt">Räägime sinu plaanist <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="meist" aria-labelledby="story-title">
+      <div class="wrap story-grid">
+        <img src="images/koda-ruum.webp" width="1400" height="1000" alt="KODA loovuse kodu käsitöö ja keraamika väljapanek" loading="lazy">
+        <div class="story-copy">
+          <p class="eyebrow">Meie lugu</p>
+          <h2 id="story-title">KODA – loovuse kodu</h2>
+          <p>KODA nimi kannab mõtet paigast, kuhu on hea tulla, kus saab olla uudishimulik ja kus loovusel on ruumi.</p>
+          <p>Kristinasavituba asub Kuressaare Kauba tänaval. Meie soov on hoida au sees käelist loomingut ja pakkuda külalistele võimalust keraamika ning savimaailmaga lähemalt tutvuda.</p>
+          <p>See veebileht tutvustab KODA tegemisi. Ettevõtte asutamise täpsem lugu ja Kristina teekond lisanduvad siia siis, kui need on valmis jagamiseks.</p>
+          <a class="btn btn-secondary" href="#kontakt">Kirjuta meile</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-band">
+      <div class="wrap">
+        <h2>Loo. Katseta. Naudi.</h2>
+        <p>Rahulik hetk, soe kohtumine ja rõõm oma kätega tegemisest.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Hea teada</p>
+          <h2 id="faq-title">Korduma kippuvad küsimused</h2>
+          <p>Kui sa ei leia siit vastust, võta meiega ühendust – vastame hea meelega.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Kus KODA Kristinasavituba asub?</summary>
+            <p>Asume aadressil Kauba tn 3, Kuressaare, Saaremaa.</p>
+          </details>
+          <details>
+            <summary>Kuidas saan töötoas osalemist küsida?</summary>
+            <p>Kirjuta meile e-posti teel või helista. Lisa võimalusel soovitud kuupäev, osalejate arv ja lühike kirjeldus oma soovist.</p>
+          </details>
+          <details>
+            <summary>Kui palju töötuba maksab?</summary>
+            <p>Töötoa hind sõltub valitud tegevusest ja korraldusest. Küsi meilt pakkumist ning täpsustame hinna enne kokkulepet.</p>
+          </details>
+          <details>
+            <summary>Kas saan tulla koos sõprade või perega?</summary>
+            <p>Võta meiega ühendust ja kirjelda oma seltskonda ning soovi. Saame täpsustada, milline lahendus on võimalik.</p>
+          </details>
+          <details>
+            <summary>Kas pean ette registreerima?</summary>
+            <p>Enne külastust soovitame ühendust võtta, et saaksime aja ja võimalused kokku leppida.</p>
+          </details>
+          <details>
+            <summary>Kas KODA on avatud aastaringselt?</summary>
+            <p>Tegevuste ja külastuse saadavuse kohta küsi palun otse KODAst. Lahtiolekuajad ja töötoa ajad lepitakse kokku eraldi.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-section" aria-labelledby="reviews-title">
+      <div class="wrap">
+        <div class="review-panel">
+          <div>
+            <p class="eyebrow">Külaliste tagasiside</p>
+            <h2 id="reviews-title">Sinu kogemus loeb.</h2>
+            <p>Soovime jagada siin päris külaliste arvamusi. Kui oled KODAt külastanud, anna meile teada, kuidas sul läks – avaldame tagasisidet ainult sinu loal.</p>
+          </div>
+          <a class="btn btn-secondary" href="mailto:priskekristina@gmail.com?subject=Tagasiside%20KODA%20k%C3%BClastuse%20kohta">Jaga tagasisidet</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="kontakt" aria-labelledby="contact-title">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="eyebrow">Võta ühendust</p>
+          <h2 id="contact-title">Kohtume KODAs?</h2>
+          <p class="muted">Kirjelda oma soovi ja leiame koos järgmise sammu. Küsi töötoa, külastuse või seltskonnale sobiva võimaluse kohta.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <span class="contact-icon" aria-hidden="true">⌖</span>
+              <div><strong>Asukoht</strong><span>Kauba tn 3, Kuressaare, Saaremaa</span></div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon" aria-hidden="true">☎</span>
+              <div><strong>Telefon</strong><a href="tel:+3725269755">+372 5269 755</a></div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon" aria-hidden="true">@</span>
+              <div><strong>E-post</strong><a href="mailto:priskekristina@gmail.com">priskekristina@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="map-note">
+            <strong>Kuidas kohale tulla?</strong>
+            <p>KODA asub Kuressaare kesklinnas Kauba tänaval. Parkimise ja ligipääsetavuse täpse info saamiseks võta meiega enne külastust ühendust.</p>
+            <p><a href="https://www.google.com/maps/search/?api=1&query=Kauba+tn+3+Kuressaare" target="_blank" rel="noopener noreferrer">Ava asukoht Google Mapsis ↗</a></p>
+          </div>
+        </div>
+        <form class="form-card" id="contact-form">
+          <h3>Saada päring</h3>
+          <p>Vorm avab sinu e-posti rakenduses valmis kirja. Päringut ei saadeta veebilehe kaudu automaatselt.</p>
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Sinu nimi *</label>
+              <input id="name" name="name" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">E-posti aadress *</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="date">Soovitud kuupäev</label>
+              <input id="date" name="date" type="date">
+            </div>
+            <div class="field">
+              <label for="people">Osalejate arv</label>
+              <input id="people" name="people" type="number" min="1" max="100" inputmode="numeric">
+            </div>
+            <div class="field full">
+              <label for="message">Sinu soov või küsimus *</label>
+              <textarea id="message" name="message" required placeholder="Kirjelda lühidalt, mida sooviksid teha..."></textarea>
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Koosta e-kiri <span aria-hidden="true">→</span></button>
+          <p class="form-note">Vajutades nuppu avaneb e-kiri aadressile priskekristina@gmail.com. Sinu andmeid ei salvestata sellele veebilehele.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#avaleht">
+            <img src="images/koda-logo.png" width="58" height="58" alt="">
+            <span class="brand-name"><strong>KODA</strong><span>Loovuse kodu</span></span>
+          </a>
+          <p style="max-width:330px;margin-top:16px;">Loominguline paik Kuressaares, kus kohtuvad savi, käsitöö ja loovus.</p>
+        </div>
+        <div>
+          <h3>Avasta</h3>
+          <div class="footer-links">
+            <a href="#tegevused">Tegevused</a>
+            <a href="#meist">Meie lugu</a>
+            <a href="#faq-title">Korduma kippuvad küsimused</a>
+            <a href="#kontakt">Kontakt</a>
+          </div>
+        </div>
+        <div>
+          <h3>Kontakt</h3>
+          <div class="footer-links">
+            <a href="tel:+3725269755">+372 5269 755</a>
+            <a href="mailto:priskekristina@gmail.com">priskekristina@gmail.com</a>
+            <span>Kauba tn 3, Kuressaare</span>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year">2026</span> KODA Kristinasavituba. Kõik õigused kaitstud. <span style="float:right"><a href="andmekaitse.html">Andmekaitsetingimused</a></span></div>
+    </div>
+  </footer>
+
+  <div class="mobile-booking">
+    <a class="btn btn-primary" href="#kontakt">Küsi pakkumist <span aria-hidden="true">→</span></a>
+  </div>
+
+  <script>
+    (() => {
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".nav");
+      toggle.addEventListener("click", () => {
+        const isOpen = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.setAttribute("aria-label", isOpen ? "Sulge menüü" : "Ava menüü");
+      });
+      nav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.setAttribute("aria-label", "Ava menüü");
+        });
+      });
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      document.getElementById("contact-form").addEventListener("submit", event => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const data = new FormData(form);
+        const subject = "KODA päring – " + data.get("name");
+        const body = [
+          "Nimi: " + data.get("name"),
+          "E-post: " + data.get("email"),
+          "Soovitud kuupäev: " + (data.get("date") || "Ei ole määratud"),
+          "Osalejate arv: " + (data.get("people") || "Ei ole määratud"),
+          "",
+          "Sõnum:",
+          data.get("message")
+        ].join("\n");
+        window.location.href = "mailto:priskekristina@gmail.com?subject=" +
+          encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      });
+    })();
+  </script>
+</body>
+</html>
